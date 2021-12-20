@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import org.springframework.lang.NonNull;
 @Entity
 public class User {
     //create columns of  table
@@ -15,6 +15,7 @@ public class User {
     private String name;
 
     private  String gender;
+    @NonNull
     private  String emai;
     //create constructor
     public User(int uid, String name, String gender, String emai) {
