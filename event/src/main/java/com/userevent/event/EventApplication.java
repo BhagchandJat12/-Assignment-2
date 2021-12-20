@@ -20,8 +20,8 @@ public class EventApplication {
 		event.setUid(2);
 		event.setName("Ram");
 		event.setOccurrence("YEARLY");
-		event.setStartDate("2019-10-12");
-		event.setEndDate("2019-10-23");
+		event.setStartDate(LocalDate.parse("2019-10-12"));
+		event.setEndDate(LocalDate.parse("2019-10-23"));
 		//save values on database
 		Event e=repository.save(event);
 		//print value on console
