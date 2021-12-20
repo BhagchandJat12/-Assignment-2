@@ -5,7 +5,8 @@ import java.util.List;
 import com.userevent.event.Entity.Event;
 import com.userevent.event.Entity.EventRepository;
 import com.userevent.event.EventService.EventService;
-
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,7 @@ public class EventController {
     }
      //add new element in table
     @PostMapping("/home")
-    public Event addEvent(Event event){
+    public Event addEvent(@Validated @RequestBody  Event event){
         Event e1=this.service.addEvent(event);
         Event e2=this.repository.save(event);
         System.out.println(e2);
