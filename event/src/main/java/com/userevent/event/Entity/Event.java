@@ -3,6 +3,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.springframework.lang.NonNull;
+import java.time.LocalDate;
 
 @Entity
 public class Event {
@@ -13,11 +15,13 @@ public class Event {
 
     private int uid;
     private String name;
+    @NonNULL
     private String occurrence;
-    private String startDate;
-    private  String endDate;
+    @NonNULL
+    private LocalDate startDate;
+    private  LocalDate endDate;
     //create constrctor
-    public Event(int id, int uid, String name, String occurrence,  String startDate ,  String endDate) {
+    public Event(int id, int uid, String name, String occurrence,  LocalDate startDate , LocalDate endDate) {
         this.id = id;
         this.uid = uid;
         this.name = name;
@@ -52,17 +56,17 @@ public class Event {
     public void setOccurrence(String occurrence) {
         this.occurrence = occurrence;
     }
-    public  String getStartDate() {
+    public  LocalDate getStartDate() {
         return startDate;
     }
-    public void setStartDate ( String startDate) {
+    public void setStartDate ( LocalDate startDate) {
         this.startDate= startDate;
     }
-    public  String getEndDate() {
+    public  LocalDate getEndDate() {
         return endDate;
 
     }
-    public void setEndDate(  String endDate) {
+    public void setEndDate(  LocalDate endDate) {
         this.endDate= endDate;
     }
     @Override
