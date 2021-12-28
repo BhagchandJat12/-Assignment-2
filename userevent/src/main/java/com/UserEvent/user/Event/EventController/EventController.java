@@ -48,6 +48,7 @@ public class EventController {
     public Event updatEvent(@RequestBody Event event,@PathVariable("eventid") int eventid){
       
       this.service.updateEvent( event,eventid);
+        this.repository.save(event);
       return event;
     }
 }
