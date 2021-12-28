@@ -1,5 +1,5 @@
 package com.UserEvent.user.User.UserController;
-import java.util.List;
+import java.util.LinkedList;
 
 import com.UserEvent.user.User.Entity.User;
 import com.UserEvent.user.User.Entity.UserRepository;
