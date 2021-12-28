@@ -16,7 +16,7 @@ public class EventService {
     @Autowired
     EventRepository repository;
     //create list of event
-   private static LinkedList<Event> list=new LinkedList<>();
+   private static  ArrayList<Event> list=new ArrayList<>();
    
     
     //create method for addevent
@@ -26,7 +26,7 @@ public class EventService {
     }
 // update the Event
     public void updateEvent(Event event,int eventid){
-       list= list.stream().map(b->{
+       list=(ArrayList<Event>) list.stream().map(b->{
        
         if(b.getId()==eventid){
             b.setUid(event.getUid());
