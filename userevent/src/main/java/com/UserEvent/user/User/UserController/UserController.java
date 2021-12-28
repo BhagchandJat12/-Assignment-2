@@ -45,6 +45,7 @@ public class UserController  {
     public User updatEvent(@RequestBody User user,@PathVariable("userid") int userid){
       
       this.service.updateUser( user,userid);
+        this.repository.save(user);
       return user;
     }
 }
