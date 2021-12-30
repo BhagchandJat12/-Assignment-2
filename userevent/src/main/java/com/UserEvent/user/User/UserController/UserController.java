@@ -1,6 +1,8 @@
 package com.UserEvent.user.User.UserController;
 import java.util.LinkedList;
 
+import javax.transaction.Transactional;
+
 import com.UserEvent.user.User.Entity.User;
 import com.UserEvent.user.User.Entity.UserRepository;
 import com.UserEvent.user.User.UserService.UserService;
@@ -28,11 +30,11 @@ public class UserController  {
       return this.repository.getAllUser();
     }
   //add data from postman
+  @Transactional
     @PostMapping("/user")
     public User addUser(@Validated @RequestBody User user){
-        user=this.service.addUser(user);
-        User u2=this.repository.save(user);
-       
+        this.repository.addUser(user.getUid(),user.getName(),user.getGender(),user.getEmai());
+      
         return user;
     }
 
@@ -40,12 +42,11 @@ public class UserController  {
     public void deleteEvent(@PathVariable("userid") int id){
            this.repository.deleteById(id);
     }
-
+   @Transactional
     @PutMapping("/user/{userid}")
     public User updatEvent(@RequestBody User user,@PathVariable("userid") int userid){
       
-      this.service.updateUser( user,userid);
-        this.repository.save(user);
+      this.repository.updateUser(user.getUid(),user.getName(),user.getGender(),user.getEmai(),userid);
       return user;
     }
 }

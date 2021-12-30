@@ -1,4 +1,5 @@
 package com.UserEvent.user.User.Entity;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ public class User {
 
     private  String gender;
     @NonNull
+    @Column(unique = true)
     private  String emai;
     //create constructor
     public User(int uid, String name, String gender, String emai) {

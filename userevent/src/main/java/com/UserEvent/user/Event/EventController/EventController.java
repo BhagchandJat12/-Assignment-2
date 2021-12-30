@@ -2,9 +2,10 @@ package com.UserEvent.user.Event.EventController;
 
 import java.util.LinkedList;
 
+import javax.transaction.Transactional;
+
 import com.UserEvent.user.Event.Entity.Event;
 import com.UserEvent.user.Event.Entity.EventRepository;
-import com.UserEvent.user.Event.EventService.EventService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -20,8 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EventController {
     @Autowired
     EventRepository repository;
-    @Autowired
-    EventService service;
+   
   //show table on webPage
     @GetMapping("/event")
     public LinkedList<Event > getEvent(){
@@ -30,11 +30,10 @@ public class EventController {
       return list;
     }
      //add new element in table
-    
+    @Transactional
     @PostMapping("/event")
     public Event addEvent(@Validated @RequestBody Event event){
-        event=this.service.addEvent(event);
-        Event e2=this.repository.save(event);
+        this.repository.addEvent(event.getUid(),event.getName(),event.getOccurrence(),event.getStartDate(),event.getEndDate());
         
         return event;
     }
@@ -43,12 +42,12 @@ public class EventController {
     public void deleteEvent(@PathVariable("eventid") int id){
            this.repository.deleteById(id);
     }
-
+  
+    @Transactional
     @PutMapping("/home/{eventid}")
     public Event updatEvent(@RequestBody Event event,@PathVariable("eventid") int eventid){
       
-      this.service.updateEvent( event,eventid);
-        this.repository.save(event);
+      this.repository.updateEvent(event.getId(),event.getUid(),event.getName(),event.getOccurrence(),event.getStartDate(),event.getEndDate(),eventid);
       return event;
     }
 }
